@@ -1,0 +1,11 @@
+# import CreateUserInput, User from '../models/user.graphql'
+
+type Query {
+  getUsers: [User],
+  userLogin(email: String! password: String!): User,
+  getMe: User
+}
+
+type Mutation {
+  createUser(userDoc: CreateUserInput): User
+}
