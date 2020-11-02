@@ -50,7 +50,7 @@ connection.on('error', () => {
 
 
 server.start(option, async ({ port }) => {
-  console.log(`server started on port ${port}`);
+  console.log(`server started on port ${port} visit http://localhost:${port}/playground`);
 });
 
 module.exports = { app };

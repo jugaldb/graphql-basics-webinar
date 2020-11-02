@@ -1,7 +1,7 @@
-const {UserMutation} = require('./function/user');
+const {BookMutation} = require('./function/book');
 
 const Mutation = {
-  ...UserMutation,
+  ...BookMutation,
 };
 
 module.exports = Mutation;

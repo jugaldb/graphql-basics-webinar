@@ -4,32 +4,35 @@ const mongoose = require('mongoose')
 // mongoose schema
 const schema = {
   _id: mongoose.Schema.Types.ObjectId,
-	email: {
+	title: {
 		type: String,
 		trim: true,
 	},
-	name: {
+	author: {
 		type: String,
 		trim: true,
 	},
-	password: {
+	description: {
 		type: String,
 		trim: true,
   },
-  phone_number: {
-    type: Number,
+  image: {
+    type: String,
     trim: true,
   },
+  isbn_number: {
+    type: Number,
+  }
 };
-let UserModel = DBOperation.createModel('User', schema);
-class User {
-	async add(user) {
+let BookModel = DBOperation.createModel('Book', schema);
+class Book {
+	async add(book) {
 		return new Promise((resolve, reject) => {
 			try {
-				const addedUser = Promise.resolve(
-					DBOperation.create(UserModel, user)
+				const addedBook = Promise.resolve(
+					DBOperation.create(BookModel, book)
 				);
-				resolve(addedUser);
+				resolve(addedBook);
 			} catch (err) {
 				reject(err);
 			}
@@ -38,10 +41,10 @@ class User {
 	async get(filter, option) {
 		return new Promise((resolve, reject) => {
 			try {
-				const user = Promise.resolve(
-					DBOperation.get(UserModel, filter, option)
+				const book = Promise.resolve(
+					DBOperation.get(BookModel, filter, option)
 				);
-				resolve(user);
+				resolve(book);
 			} catch (err) {
 				reject(err);
 			}
@@ -50,10 +53,10 @@ class User {
 	async update(filter, updatedField) {
 		return new Promise((resolve, reject) => {
 			try {
-				const updatedUser = Promise.resolve(
-					DBOperation.update(UserModel, filter, updatedField)
+				const updatedBook = Promise.resolve(
+					DBOperation.update(BookModel, filter, updatedField)
 				);
-				resolve(updatedUser);
+				resolve(updatedBook);
 			} catch (err) {
 				reject(err);
 			}
@@ -62,10 +65,10 @@ class User {
 	async delete(filter) {
 		return new Promise((resolve, reject) => {
 			try {
-				const deletedUser = Promise.resolve(
-					DBOperation.delete(UserModel, filter)
+				const deletedBook = Promise.resolve(
+					DBOperation.delete(BookModel, filter)
 				);
-				resolve(deletedUser);
+				resolve(deletedBook);
 			} catch (err) {
 				reject(err);
 			}
@@ -73,4 +76,4 @@ class User {
 	}
 }
 
-module.exports = User;
+module.exports = Book;

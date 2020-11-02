@@ -1,11 +1,12 @@
-# import CreateUserInput, User from '../models/user.graphql'
+# import CreateBookInput, Book, UpdateBookInput from '../models/book.graphql'
 
 type Query {
-  getUsers: [User],
-  userLogin(email: String! password: String!): User,
-  getMe: User
+  getAllBooks: [Book],
+  getBook(id: ID!): Book,
 }
 
 type Mutation {
-  createUser(userDoc: CreateUserInput): User
+  createBook(bookDoc: CreateBookInput): Book
+  updateBook(bookDoc: UpdateBookInput): Book
+  deleteBook(id: ID!): Book
 }
