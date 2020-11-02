@@ -1,27 +1,53 @@
-const { decode } = require('jsonwebtoken');
 const User = require('../../models/user');
-const parseAuthToken = require('../../utils/auth')
+const JWT = require('jsonwebtoken')
+require('dotenv').config()
 
 const user = new User();
 
-const getCurrentUser = async (request, connection) => {
-  let userData;
-  let decoded = await parseAuthToken({ request, connection });
-  console.log('asdadscscwce',decoded)
-  if (decoded) {
-    console.log('decoded', decoded)
-    let email = decoded.email;
-    [userData] = await user.get({ email });
+const parseAuthToken = async ({ request, connection }) => {
+  let value;
+  const AUTHORIZATION_HEADER_NAME = 'authorization';
+  let authorization;
+  if (connection) {
+    authorization = connection.context[AUTHORIZATION_HEADER_NAME];
+  } else {
+    authorization = request.headers[AUTHORIZATION_HEADER_NAME];
   }
-  console.log('asdasd',userData)
-  return userData;
+  if (authorization) {
+    const tokenSplitBy = ' ';
+    let token = authorization.split(tokenSplitBy);
+      let accessToken = token[1];
+      try {
+        JWT.verify(accessToken, process.env.JWT_SECRET, (err, decoded) => {
+          if (err) {
+            return res.json({
+              success: false,
+              message: 'Token is not valid'
+            });
+          } else {
+            console.log(
+              `utility parseAuthToken decoded=${JSON.stringify(decoded)}`
+            );
+            value = decoded
+            
+          }
+        })
+
+      } catch (err) {
+        // logger.log(level.error, `utility parseAuthToken err=${err}`);
+        return null;
+      }
+    }
+    console.log('value', value)
+    return value
 };
+
 
 const context = async ({ request, connection }) => ({
   request,
   connection,
   user,
-  currentUser: await getCurrentUser(request, connection),
+  currentUser: await parseAuthToken({request, connection}),
 });
 
 module.exports = {context};

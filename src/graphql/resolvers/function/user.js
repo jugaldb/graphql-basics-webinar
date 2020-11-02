@@ -13,7 +13,7 @@ const Query = {
     }
   },
   getMe: async ( _parent, _args, { currentUser }) => {
-    console.log(currentUser)
+    console.log('currentUser', currentUser)
     return currentUser ? currentUser : 'User not found'
   },
 	userLogin: async (_parent, args, { user }) => {
@@ -26,7 +26,7 @@ const Query = {
       else {
         const token = JWT.sign(
           {
-            userId: userFound._id,
+            id: userFound._id,
             email: userFound.email,
             phone_number: userFound.phone_number ? userFound.phone_number : '',
           },
