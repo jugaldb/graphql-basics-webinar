@@ -1,5 +1,5 @@
 const ApiRoutes = require( './routes/index');
-const { server, app, option } = require( './config/graphql_server.js');
+const { server, app, option } = require('./config/graphql_server.js');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
