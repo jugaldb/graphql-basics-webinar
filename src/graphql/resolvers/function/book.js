@@ -40,6 +40,26 @@ const Mutation = {
       console.log(e)
       throw Error(e)
     }
+  },
+  updateBook: async (_parent, args, { book }, _info) => {
+    try {
+      const updatedBook = await book.update({_id: args.bookDoc._id},args.bookDoc)
+      console.log(updatedBook)
+      return updatedBook
+    } catch (e)	{
+      console.log(e)
+      throw Error(e)
+    }
+  },
+  deleteBook: async (_parent, args, { book }, _info) => {
+    try {
+      const deletedBook = await book.delete({ _id: args.id })
+      console.log(deletedBook)
+      return deletedBook
+    } catch (e)	{
+      console.log(e)
+      throw Error(e)
+    }
   }
 };
 module.exports = {
