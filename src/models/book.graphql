@@ -9,7 +9,7 @@ input CreateBookInput {
 type Book {
   _id: ID
 	title: String
-	author: String
+	author: Author
 	description: String
   image: String
   isbn_number: Int
@@ -24,3 +24,9 @@ input UpdateBookInput {
   isbn_number: Int
 }
 
+type Author {
+  name: String!,
+  email: String!,
+  age: Int,
+  id: ID!
+}
