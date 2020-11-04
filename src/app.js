@@ -49,7 +49,7 @@ connection.on('error', () => {
 });
 
 server.start(option, async ({ port }) => {
-  console.log(`server started on port ${port} visit :${port}/playground`);
+  console.log(`🚀 server started on port ${port} visit :${port}/playground`);
 });
 
 module.exports = { app };
