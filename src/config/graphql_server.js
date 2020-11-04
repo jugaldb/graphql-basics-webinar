@@ -1,7 +1,8 @@
 const { GraphQLServer } = require('graphql-yoga');
 var { resolvers } = require('../graphql/resolvers/index');
 const { context } = require('../graphql/context/index');
-const { middlewares } = require('../graphql/middlewares/index')
+const { middlewares } = require('../graphql/middlewares/index');
+require('dotenv').config();
 resolvers = resolvers
 
 const OPTION = {
@@ -18,7 +19,7 @@ const server = new GraphQLServer({
 });
 
 const option = {
-  port: 3000,
+  port: process.env.PORT || 3000,
   cors: {
     credentials: true,
     origin: 'https://some_url', // your frontend url.

@@ -48,8 +48,6 @@ connection.on('error', () => {
   );
 });
 
-const port = process.env.PORT || 3000
-
 server.start(option, async ({ port }) => {
   console.log(`server started on port ${port} visit :${port}/playground`);
 });
